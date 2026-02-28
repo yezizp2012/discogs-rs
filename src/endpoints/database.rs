@@ -1,3 +1,7 @@
+//! Discogs Database API endpoints.
+//!
+//! Reference: <https://www.discogs.com/developers/#page:database>
+
 use crate::auth::AuthLevel;
 use crate::client::DiscogsClient;
 use crate::error::Result;

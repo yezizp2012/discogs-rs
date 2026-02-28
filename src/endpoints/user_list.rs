@@ -1,3 +1,7 @@
+//! Discogs User List API endpoints.
+//!
+//! Reference: <https://www.discogs.com/developers/#page:user-lists>
+
 use crate::auth::AuthLevel;
 use crate::client::DiscogsClient;
 use crate::error::Result;

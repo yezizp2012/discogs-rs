@@ -7,6 +7,18 @@
 
 `discogs-rs` is an async Rust client library for Discogs API v2.
 
+## Official Discogs API v2 Links
+
+- API Home: <https://www.discogs.com/developers/>
+- Authentication: <https://www.discogs.com/developers/#page:authentication>
+- Database: <https://www.discogs.com/developers/#page:database>
+- Marketplace: <https://www.discogs.com/developers/#page:marketplace>
+- Inventory Export: <https://www.discogs.com/developers/#page:inventory-export>
+- User Identity: <https://www.discogs.com/developers/#page:user-identity>
+- User Collection: <https://www.discogs.com/developers/#page:user-collection>
+- User Wantlist: <https://www.discogs.com/developers/#page:user-wantlist>
+- User Lists: <https://www.discogs.com/developers/#page:user-lists>
+
 ## Features
 
 - Domain-oriented API modules (`database`, `marketplace`, `inventory`, `user`, `collection`, `wantlist`, `list`)
@@ -94,6 +106,17 @@ let client = DiscogsClient::with_default_user_agent_and_user_token(
     std::env::var("DISCOGS_USER_TOKEN")?
 )?;
 ```
+
+## Auth Level Matrix
+
+This client enforces auth level before dispatching HTTP requests.
+
+- `AuthLevel::None`
+  - Public endpoints (most database reads, public user/list data)
+- `AuthLevel::Consumer`
+  - Consumer-key gated endpoints (for example database search)
+- `AuthLevel::User`
+  - User-scoped endpoints (identity, collection writes, wantlist writes, marketplace order/listing writes, inventory export)
 
 ## API Coverage
 
@@ -203,6 +226,13 @@ Each call returns `ApiResponse<T>`, including optional `rate_limit` parsed from:
 
 Configure retry behavior with `RetryConfig`.
 
+## Discogs API Constraints
+
+- Discogs requires a descriptive `User-Agent`.
+- Rate limits are exposed via response headers and can vary by auth mode.
+- This crate retries only `429 Too Many Requests` using exponential backoff; all other non-2xx responses are mapped to `DiscogsError::Http`.
+- Auth errors are prevented early when possible by local auth-level checks.
+
 ## Errors
 
 `DiscogsError` variants:
@@ -212,6 +242,12 @@ Configure retry behavior with `RetryConfig`.
 - `Request`
 - `Json`
 - `InvalidOAuthResponse`
+
+## API Compatibility Policy
+
+- Common/high-value fields are strongly typed.
+- Unknown fields are preserved through `#[serde(flatten)] extra` maps.
+- This strategy minimizes breakage from additive API response changes while keeping ergonomic typed access.
 
 ## Development
 

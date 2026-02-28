@@ -1,3 +1,7 @@
+//! Discogs Inventory Export API endpoints.
+//!
+//! Reference: <https://www.discogs.com/developers/#page:inventory-export>
+
 use crate::auth::AuthLevel;
 use crate::client::DiscogsClient;
 use crate::error::Result;

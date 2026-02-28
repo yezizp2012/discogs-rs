@@ -1,3 +1,7 @@
+//! Discogs Marketplace API endpoints.
+//!
+//! Reference: <https://www.discogs.com/developers/#page:marketplace>
+
 use crate::auth::AuthLevel;
 use crate::client::DiscogsClient;
 use crate::error::Result;

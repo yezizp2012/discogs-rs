@@ -1,3 +1,9 @@
+//! Discogs User Identity API endpoints.
+//!
+//! References:
+//! - <https://www.discogs.com/developers/#page:user-identity>
+//! - <https://www.discogs.com/developers/#page:user-lists>
+
 use crate::auth::AuthLevel;
 use crate::client::DiscogsClient;
 use crate::endpoints::{collection::CollectionApi, user_list::ListApi, wantlist::WantlistApi};

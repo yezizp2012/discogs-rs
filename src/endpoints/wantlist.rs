@@ -1,3 +1,7 @@
+//! Discogs User Wantlist API endpoints.
+//!
+//! Reference: <https://www.discogs.com/developers/#page:user-wantlist>
+
 use crate::auth::AuthLevel;
 use crate::client::DiscogsClient;
 use crate::error::Result;

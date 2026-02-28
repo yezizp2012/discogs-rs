@@ -1,3 +1,5 @@
+//! Endpoint modules grouped by Discogs API domain.
+
 pub mod collection;
 pub mod database;
 pub mod inventory;
