@@ -7,8 +7,9 @@ pub enum AuthLevel {
     User,
 }
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Default)]
 pub enum Auth {
+    #[default]
     None,
     UserToken {
         token: String,
@@ -23,12 +24,6 @@ pub enum Auth {
         access_token: String,
         access_token_secret: String,
     },
-}
-
-impl Default for Auth {
-    fn default() -> Self {
-        Self::None
-    }
 }
 
 impl Auth {

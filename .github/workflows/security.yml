@@ -1,0 +1,31 @@
+name: Security
+
+on:
+  schedule:
+    - cron: '0 6 * * 1'
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  advisories:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Install security tools
+        uses: taiki-e/install-action@v2
+        with:
+          tool: cargo-deny,cargo-audit
+
+      - name: Cargo deny (advisories)
+        run: cargo deny check advisories
+
+      - name: Cargo audit
+        run: cargo audit

@@ -11,24 +11,46 @@ permissions:
 jobs:
   checks:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        rust: ["1.85.0", "stable"]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
       - name: Setup Rust
         uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: ${{ matrix.rust }}
+          components: clippy, rustfmt
 
       - name: Cache cargo artifacts
         uses: Swatinem/rust-cache@v2
 
+      - name: Check (all targets)
+        run: cargo check --all-targets --all-features
+
       - name: Format
+        if: matrix.rust == 'stable'
         run: cargo fmt --all -- --check
 
       - name: Clippy
+        if: matrix.rust == 'stable'
         run: cargo clippy --all-targets --all-features -- -D warnings
 
       - name: Test
+        if: matrix.rust == 'stable'
         run: cargo test --all-targets --all-features
 
       - name: Check examples
+        if: matrix.rust == 'stable'
         run: cargo check --examples
+
+      - name: Check rustls-tls feature
+        if: matrix.rust == 'stable'
+        run: cargo check --no-default-features --features rustls-tls
+
+      - name: Check native-tls feature
+        if: matrix.rust == 'stable'
+        run: cargo check --no-default-features --features native-tls

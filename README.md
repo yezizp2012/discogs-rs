@@ -1,5 +1,10 @@
 # discogs-rs
 
+[![CI](https://github.com/yezizp2012/discogs-rs/actions/workflows/ci.yml/badge.svg)](https://github.com/yezizp2012/discogs-rs/actions/workflows/ci.yml)
+[![crates.io](https://img.shields.io/crates/v/discogs-rs.svg)](https://crates.io/crates/discogs-rs)
+[![docs.rs](https://docs.rs/discogs-rs/badge.svg)](https://docs.rs/discogs-rs)
+[![license](https://img.shields.io/crates/l/discogs-rs.svg)](https://github.com/yezizp2012/discogs-rs/blob/master/LICENSE)
+
 `discogs-rs` is an async Rust client library for Discogs API v2.
 
 ## Features
@@ -16,6 +21,20 @@
 ```toml
 [dependencies]
 discogs-rs = "0.1"
+```
+
+MSRV: `1.85`
+
+## Feature Flags
+
+- `rustls-tls` (default): use `reqwest` with Rustls TLS backend
+- `native-tls`: use platform native TLS backend
+
+Example:
+
+```toml
+[dependencies]
+discogs-rs = { version = "0.1", default-features = false, features = ["native-tls"] }
 ```
 
 ## Quick Start
