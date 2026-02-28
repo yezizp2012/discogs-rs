@@ -2,8 +2,8 @@
 
 [![CI](https://github.com/yezizp2012/discogs-rs/actions/workflows/ci.yml/badge.svg)](https://github.com/yezizp2012/discogs-rs/actions/workflows/ci.yml)
 [![crates.io](https://img.shields.io/crates/v/discogs-rs.svg)](https://crates.io/crates/discogs-rs)
-[![docs.rs](https://docs.rs/discogs-rs/badge.svg)](https://docs.rs/discogs-rs)
-[![license](https://img.shields.io/crates/l/discogs-rs.svg)](https://github.com/yezizp2012/discogs-rs/blob/master/LICENSE)
+[![docs.rs](https://img.shields.io/docsrs/discogs-rs)](https://docs.rs/crate/discogs-rs/latest)
+[![license](https://img.shields.io/github/license/yezizp2012/discogs-rs)](https://github.com/yezizp2012/discogs-rs/blob/master/LICENSE)
 
 `discogs-rs` is an async Rust client library for Discogs API v2.
 
