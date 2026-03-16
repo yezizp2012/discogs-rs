@@ -4,9 +4,7 @@ all-features = true
 [advisories]
 db-path = "~/.cargo/advisory-db"
 db-urls = ["https://github.com/RustSec/advisory-db"]
-vulnerability = "deny"
 # cargo-deny expects dependency scope selection for unmaintained advisories.
 unmaintained = "all"
 yanked = "warn"
-notice = "warn"
 ignore = []
